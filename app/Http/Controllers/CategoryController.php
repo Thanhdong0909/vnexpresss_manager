@@ -14,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $listCategory = Category::all(); // get list category
+        //dd($listCategory);
+        return view('admin.category.listCategory', compact('listCategory'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.addCategories');
     }
 
     /**
@@ -35,7 +37,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        //dd($data);
+        $listCategory = Category::create($data);
+        return redirect()->route('categories.index', compact('listCategory')); 
     }
 
     /**
@@ -57,7 +62,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -69,7 +74,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $data =$request->all();
+        $listCategory = $category->update($data);
+        return redirect()->route('categories.index', compact('listCategory')); 
     }
 
     /**
@@ -80,6 +87,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+         //$category =Category::find($category)->get(1); // return a collection
+         //$category->delete();
+       $listCategory= $category->delete();
+        return redirect()->route('categories.index', compact('listCategory')); 
+            
     }
 }

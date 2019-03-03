@@ -5,7 +5,7 @@
                             <a href=""><i class="fa fa-bar-chart-o fa-fw"></i> Quản Lý Thể Loại<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="">Danh sách thể loại</a>
+                                    <a href="{{route('categories.index')}}">Danh sách thể loại</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

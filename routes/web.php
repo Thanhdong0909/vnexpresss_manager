@@ -12,5 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('admin.category.listCategory');
+    return view('admin.category.dashboard');
 });
+Route::get('categories', 'CategoryController@index')->name('categories.index');
+Route::get('categories/create', 'CategoryController@create')->name('categories.create');
+Route::post('categories/store', 'CategoryController@store')->name('categories.store');
+Route::delete('categories/{category}', 'CategoryController@destroy')->name('categories.delete');
+Route::get('categories/{category}/edit','CategoryController@edit')->name('categories.edit');
+Route::put('categories/{category}/update','CategoryController@update')->name('categories.update');
