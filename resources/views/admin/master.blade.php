@@ -38,6 +38,7 @@
        @include('admin.header')
         <!-- Page Content -->
        
+       @yield('content')
         <!-- /#page-wrapper -->
 
     </div>
