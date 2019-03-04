@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Kind;
+use App\Category;
 use Illuminate\Http\Request;
 
 class KindController extends Controller
@@ -14,7 +15,8 @@ class KindController extends Controller
      */
     public function index()
     {
-        //
+        $listKind =  Kind::all();
+        return view('admin.kind.listKind', compact('listKind'));
     }
 
     /**
@@ -24,7 +26,9 @@ class KindController extends Controller
      */
     public function create()
     {
-        //
+        $idtheloai = Category::pluck('TenTL','id');
+        //dd($idtheloai);
+        return view('admin.kind.addKind', compact('idtheloai'));
     }
 
     /**
@@ -35,7 +39,10 @@ class KindController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $listKind =  Kind::create($data);
+        //dd($data);
+        return redirect()->route('kinds.index', compact('listKind'));
     }
 
     /**
@@ -57,7 +64,8 @@ class KindController extends Controller
      */
     public function edit(Kind $kind)
     {
-        //
+        $idtheloai = Category::pluck('TenTL','id');
+        return view('admin.kind.edit', compact('kind', 'idtheloai'));
     }
 
     /**
@@ -69,7 +77,11 @@ class KindController extends Controller
      */
     public function update(Request $request, Kind $kind)
     {
-        //
+        $data = $request->all();
+        $listKind = $kind->update($data);
+        //$kind->name = $request->name;
+        return redirect()->route('kinds.index', compact('listKind'));
+
     }
 
     /**
@@ -80,6 +92,7 @@ class KindController extends Controller
      */
     public function destroy(Kind $kind)
     {
-        //
+        $listKind = $kind->delete();
+        return redirect()->route('kinds.index', compact('listKind'));
     }
 }

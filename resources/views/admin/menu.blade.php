@@ -14,7 +14,7 @@
                             <a href="#"><i class="fa fa-cube fa-fw"></i>Quản lý Loại Tin<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="">Danh sách loại tin</a>
+                                    <a href="{{route('kinds.index')}}">Danh sách loại tin</a>
                                 </li>
 
                             </ul>
