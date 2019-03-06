@@ -31,3 +31,6 @@ Route::put('kinds/{kind}/update','KindController@update')->name('kinds.update');
 Route::get('articles', 'ArticleController@index')->name('article.index');
 Route::get('articles/create', 'ArticleController@create')->name('article.create');
 Route::post('articles/store', 'ArticleController@store')->name('article.store');
+Route::delete('articles/{article}', 'ArticleController@destroy')->name('article.delete');
+Route::get('articles/{article}/edit','ArticleController@edit')->name('article.edit');
+Route::put('articles/{article}/update','ArticleController@update')->name('article.update');

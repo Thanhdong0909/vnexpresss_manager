@@ -24,13 +24,13 @@
 				<td> <img src="images/{{$item->Image}}" width="100" height="100"> </td>
 				<td>{{$item->idLT}}</td>
 				<td>{{$item->idTL}}</td>
-				<td><form action="{{route('kinds.delete',$item->id) }}" method="POST">
+				<td><form action="{{route('article.delete',$item->id) }}" method="POST">
 							@csrf
 							@method('DELETE')
 						<button type="submit">Delete</button>
 							</form></td>
 				<td>
-					<a href="{{route('kinds.edit',$item->id)}}">Sửa</a>
+					<a href="{{route('article.edit',$item->id)}}">Sửa</a>
 				</td>
 				</tr>
 				

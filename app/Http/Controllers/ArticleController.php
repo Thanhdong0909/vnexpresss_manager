@@ -80,7 +80,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        $idtheloai = Category::pluck('TenTL','id');
+        $idloaitin = Kind::pluck('Ten','id');
+        return view('admin.article.editArticle', compact('article','idtheloai','idloaitin'));
     }
 
     /**
@@ -92,7 +94,9 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $data = $request->all();
+        $listArticle = $article->update($data);
+        return redirect()->route('article.index', compact('listArticle'));
     }
 
     /**
@@ -103,6 +107,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect()->route('article.index');
     }
 }
