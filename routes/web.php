@@ -14,6 +14,13 @@
 Route::get('/', function () {
     return view('admin.category.dashboard');
 });
+
+// route login
+Route::get('login', function(){
+	return view('getLogin');})->name('get.login');
+
+Route::post('postLogin', 'LoginController@postLogin')->name('login.postLogin');
+
 Route::get('categories', 'CategoryController@index')->name('categories.index');
 Route::get('categories/create', 'CategoryController@create')->name('categories.create');
 Route::post('categories/store', 'CategoryController@store')->name('categories.store');
