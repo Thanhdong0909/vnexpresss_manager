@@ -94,8 +94,25 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $data = $request->all();
-        $listArticle = $article->update($data);
+        $data = array();
+        if($request->hasFile('Image'))
+        {
+            $imageObject = $request->Image;
+            $nameFile = $imageObject->getClientOriginalName();
+            $data = [
+                'TieuDe' => $request->input('TieuDe'),
+                'NoiDung' => $request->input('NoiDung'),
+                'Image' => $nameFile,
+                'idTL'=> $request->input('idTL'),
+                'idLT' => $request->input('idLT')
+            ]; 
+
+             $imageObject->move('images', $nameFile); // upload anh     
+        }
+        else {
+             $data = $request->all();
+        }
+         $listArticle = $article->update($data);
         return redirect()->route('article.index', compact('listArticle'));
     }
 
