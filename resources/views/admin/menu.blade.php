@@ -24,7 +24,7 @@
                             <a href="#"><i class="fa fa-cube fa-fw"></i>Quản Lý Tin Tức<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="">Danh sách tin tức</a>
+                                    <a href="{{route('article.index')}}">Danh sách tin tức</a>
                                 </li>
                                 
                             </ul>

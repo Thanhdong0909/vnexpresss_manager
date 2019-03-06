@@ -37,9 +37,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        //dd($data);
-        $listCategory = Category::create($data);
+        if($request->isMethod('POST')) {
+            $data = $request->all();
+            $listCategory = Category::create($data);
+        }
         return redirect()->route('categories.index', compact('listCategory')); 
     }
 

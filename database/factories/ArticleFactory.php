@@ -7,11 +7,11 @@ use App\Kind;
 
 $factory->define(Article::class, function (Faker $faker) {
 	$idTL = Category::pluck('id');
-	$idLT = Category::pluck('id');
+	$idLT = Kind::pluck('id');
     return [
         'TieuDe'=> $faker->text,
         'NoiDung'=>$faker->text,
-        'HinhAnh'=>$faker->imageUrl(50, 60),
+        'Image'=>$faker->imageUrl(50, 60),
         'idTL'=> $faker->randomElement($idTL),
         'idLT'=> $faker->randomElement($idLT)
     ];

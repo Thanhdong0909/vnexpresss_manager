@@ -27,3 +27,7 @@ Route::post('kinds/store', 'KindController@store')->name('kinds.store');
 Route::delete('kinds/{kind}', 'KindController@destroy')->name('kinds.delete');
 Route::get('kinds/{kind}/edit','KindController@edit')->name('kinds.edit');
 Route::put('kinds/{kind}/update','KindController@update')->name('kinds.update');
+
+Route::get('articles', 'ArticleController@index')->name('article.index');
+Route::get('articles/create', 'ArticleController@create')->name('article.create');
+Route::post('articles/store', 'ArticleController@store')->name('article.store');

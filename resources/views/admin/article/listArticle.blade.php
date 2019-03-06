@@ -3,24 +3,26 @@
 <div id="page-wrapper">
 	<table class="table table-hover">
 		<thead>
-			<a href="{{route('kinds.create')}}">Thêm loại tin</a>
+			<a href="{{route('article.create')}}">Thêm tin mới</a>
 			<tr>
 				<th>id</th>
-				<th>Tên </th>
-				<th>Tên không dấu</th>
-				<th>Thứ tự</th>
-				<th>Thể loại</th>
+				<th>Tiêu Đề </th>
+				<th>Nội Dung</th>
+				<th>Hình Ảnh</th>
+				<th width="8%">Id Thể Loại</th>
+				<th width="8%">Id Loại tin</th>
 				<th>Action</th>
 				<th>Edit</th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($listKind as $item)
+			@foreach($listArticle as $item)
 			<tr>
 				<td>{{$item->id}}</td>
-				<td>{{$item->Ten}}</td>
-				<td>{{$item->Ten_KhongDau}}</td>
-				<td>{{$item->ThuTu}}</td>
+				<td>{{$item->TieuDe}}</td>
+				<td>{{$item->NoiDung}}</td>
+				<td> <img src="images/{{$item->Image}}" width="100" height="100"> </td>
+				<td>{{$item->idLT}}</td>
 				<td>{{$item->idTL}}</td>
 				<td><form action="{{route('kinds.delete',$item->id) }}" method="POST">
 							@csrf

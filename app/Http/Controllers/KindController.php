@@ -39,9 +39,10 @@ class KindController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $listKind =  Kind::create($data);
-        //dd($data);
+        if($request->isMethod('POST')) {
+            $data = $request->all();
+            $listKind =  Kind::create($data);
+        }
         return redirect()->route('kinds.index', compact('listKind'));
     }
 

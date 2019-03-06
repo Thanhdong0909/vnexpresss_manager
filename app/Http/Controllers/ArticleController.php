@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
+use App\Kind;
+
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -14,7 +17,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $listArticle = Article::all();
+        return view('admin.article.listArticle', compact('listArticle'));
     }
 
     /**
@@ -24,7 +28,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $idtheloai = Category::pluck('TenTL','id');
+        $idloaitin = Kind::pluck('Ten','id');
+        return view('admin.article.addArticle', compact('idtheloai', 'idloaitin'));
     }
 
     /**
@@ -35,7 +41,24 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->isMethod('POST'))
+        {
+            $imageObject = $request->Image;
+            $nameFile = $imageObject->getClientOriginalName(); // get ten file
+            $listArticle = Article::create([
+            'TieuDe' => $request->input('TieuDe'),
+            'NoiDung' => $request->input('NoiDung'),
+            'Image' => $nameFile,
+             'idTL'=> $request->input('idTL'),
+             'idLT' => $request->input('idLT')
+            ]);
+             // upload file
+            if($request->hasFile('Image'))
+            {
+                $imageObject->move('images', $nameFile);
+            }
+        }
+        return redirect()->route('article.index', compact($listArticle));
     }
 
     /**

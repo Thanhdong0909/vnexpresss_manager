@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('TieuDe');
             $table->longText('NoiDung');
-            $table->string('Hinhanh');
+            $table->string('Image');
             $table->integer('idTL');
             $table->integer('idLT');
             $table->timestamps();
