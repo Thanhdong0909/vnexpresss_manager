@@ -13,13 +13,14 @@
 
 Route::get('/', function () {
     return view('admin.category.dashboard');
-});
+})->name('dashboard');
 
 // route login
 Route::get('login', function(){
 	return view('getLogin');})->name('get.login');
 
 Route::post('postLogin', 'LoginController@postLogin')->name('login.postLogin');
+Route::get('logout', 'LoginController@logout')->name('logout');
 
 Route::get('categories', 'CategoryController@index')->name('categories.index');
 Route::get('categories/create', 'CategoryController@create')->name('categories.create');
@@ -41,3 +42,4 @@ Route::post('articles/store', 'ArticleController@store')->name('article.store');
 Route::delete('articles/{article}', 'ArticleController@destroy')->name('article.delete');
 Route::get('articles/{article}/edit','ArticleController@edit')->name('article.edit');
 Route::put('articles/{article}/update','ArticleController@update')->name('article.update');
+Route::get('logout', 'LoginController@logout')->name('logout');

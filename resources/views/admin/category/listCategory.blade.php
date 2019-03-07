@@ -1,11 +1,6 @@
 @extends('admin.master')
 @section('content')
 <div id="page-wrapper">
-	@if(Auth::check())
-	 <h1>đã đang nhập</h1>
-	@else
-	<h1> chưa đăng nhập</h1>
-	@endif
 	<table class="table table-hover">
 		<thead>
 			<a href="{{route('categories.create')}}">Thêm thể loại</a>
