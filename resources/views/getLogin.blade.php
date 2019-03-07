@@ -7,9 +7,15 @@
 	
 		<div class="form-group">
 			<label for="">username</label>
-			<input type="text" class="form-control" id="" placeholder="Nhập username" name="username">
+			<input type="text" class="form-control" id="" placeholder="Nhập email" name="email">
+			@if($errors->has('email'))
+				<p style="color: red">{{$errors->first('email')}}</p>
+			@endif
 			<label for="">password</label>
 			<input type="password" class="form-control" id="" placeholder="Nhập password" name="password">
+			@if($errors->has('password'))
+				<p style="color: red">{{$errors->first('password')}}</p>
+			@endif
 		</div>
 	
 		<button type="submit" class="btn btn-primary">Đăng nhập</button>

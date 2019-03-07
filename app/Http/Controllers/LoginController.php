@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
-    public function postLogin(Request $request)
+    public function postLogin(LoginRequest $request)
     {
     	$data = $request->all();   	
-    	if(Auth::attempt(['email'=>$data['username'], 'password'=>$data['password']]))
+    	if(Auth::attempt(['email'=>$data['email'], 'password'=>$data['password']]))
     	{
     		return redirect()->route('categories.index');
     	} else {
