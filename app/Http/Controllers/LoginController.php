@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Support\MessageBag;
 
 class LoginController extends Controller
 {
@@ -15,7 +16,8 @@ class LoginController extends Controller
     	{
     		return redirect()->route('categories.index');
     	} else {
-   			return redirect()->back();
+            $errors = new MessageBag(['ErrorLogin'=>'Email hoặc mật khẩu không đúng']);  
+   			return redirect()->back()->withInput()->withErrors($errors);
     	}
     }
     public function logout()

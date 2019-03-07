@@ -25,24 +25,36 @@ Route::get('middleware', function(){
 Route::post('postLogin', 'LoginController@postLogin')->name('login.postLogin');
 Route::get('logout', 'LoginController@logout')->name('logout');
 
-Route::get('categories', 'CategoryController@index')->middleware('check.login')->name('categories.index');
-Route::get('categories/create', 'CategoryController@create')->middleware('check.login')->name('categories.create');
-Route::post('categories/store', 'CategoryController@store')->name('categories.store');
-Route::delete('categories/{category}', 'CategoryController@destroy')->name('categories.delete');
-Route::get('categories/{category}/edit','CategoryController@edit')->name('categories.edit');
-Route::put('categories/{category}/update','CategoryController@update')->name('categories.update');
+// categories
+Route::group(['prefix'=>'categories'], function(){
+	Route::get('/', 'CategoryController@index')->middleware('check.login')->name('categories.index');
+	Route::get('create', 'CategoryController@create')->middleware('check.login')->name('categories.create');
+	Route::post('store', 'CategoryController@store')->name('categories.store');
+	Route::delete('{category}', 'CategoryController@destroy')->name('categories.delete');
+	Route::get('{category}/edit','CategoryController@edit')->name('categories.edit');
+	Route::put('{category}/update','CategoryController@update')->name('categories.update');
 
-Route::get('kinds', 'KindController@index')->middleware('check.login')->name('kinds.index');
-Route::get('kinds/create', 'KindController@create')->middleware('check.login')->name('kinds.create');
-Route::post('kinds/store', 'KindController@store')->name('kinds.store');
-Route::delete('kinds/{kind}', 'KindController@destroy')->name('kinds.delete');
-Route::get('kinds/{kind}/edit','KindController@edit')->name('kinds.edit');
-Route::put('kinds/{kind}/update','KindController@update')->name('kinds.update');
+});
+// kind
+Route::group(['prefix'=>'kinds'], function(){
+	Route::get('/', 'KindController@index')->middleware('check.login')->name('kinds.index');
+	Route::get('create', 'KindController@create')->middleware('check.login')->name('kinds.create');
+	Route::post('store', 'KindController@store')->name('kinds.store');
+	Route::delete('{kind}', 'KindController@destroy')->name('kinds.delete');
+	Route::get('{kind}/edit','KindController@edit')->name('kinds.edit');
+	Route::put('{kind}/update','KindController@update')->name('kinds.update');
 
-Route::get('articles', 'ArticleController@index')->middleware('check.login')->name('article.index');
-Route::get('articles/create', 'ArticleController@create')->middleware('check.login')->name('article.create');
-Route::post('articles/store', 'ArticleController@store')->name('article.store');
-Route::delete('articles/{article}', 'ArticleController@destroy')->name('article.delete');
-Route::get('articles/{article}/edit','ArticleController@edit')->name('article.edit');
-Route::put('articles/{article}/update','ArticleController@update')->name('article.update');
-Route::get('logout', 'LoginController@logout')->name('logout');
+});
+
+// article
+Route::group(['prefix'=>'articles'], function(){
+	Route::get('/', 'ArticleController@index')->middleware('check.login')->name('article.index');
+	Route::get('create', 'ArticleController@create')->middleware('check.login')->name('article.create');
+	Route::post('store', 'ArticleController@store')->name('article.store');
+	Route::delete('{article}', 'ArticleController@destroy')->name('article.delete');
+	Route::get('{article}/edit','ArticleController@edit')->name('article.edit');
+	Route::put('{article}/update','ArticleController@update')->name('article.update');
+});
+
+// route ajax
+Route::get('ajax/category/{categoryid}' ,'AjaxController@getAjax');

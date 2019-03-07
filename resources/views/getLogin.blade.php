@@ -6,6 +6,12 @@
 		<legend>Đăng nhập</legend>
 	
 		<div class="form-group">
+			@if($errors->has('ErrorLogin'))
+				<div class="alert alert-danger">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					{{$errors->first('ErrorLogin')}}
+				</div>
+			@endif
 			<label for="">username</label>
 			<input type="text" class="form-control" id="" placeholder="Nhập email" name="email">
 			@if($errors->has('email'))

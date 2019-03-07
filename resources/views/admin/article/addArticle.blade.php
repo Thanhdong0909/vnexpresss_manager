@@ -12,17 +12,17 @@
 			<textarea class="form-control" rows="7" cols="30" name='NoiDung'> </textarea>
 			<label for="">Hình ảnh</label>
 		 	<input type="file" class="form-control" name="Image">
-			<label for="">id Thể loại </label>
-			<label>Chọn id thể loại</label>
-			<select name='idTL' class="form-control">
-				@foreach($idtheloai as $key=>$value)
-				<option value="{{$key}}">{{$value}}</option>
+			<label for=""> Thể loại </label>
+		
+			<select name='idTL' class="form-control" id="categogy">
+				@foreach($idtheloai as $value)
+				<option value="{{$value->id}}">{{$value->TenTL}}</option>
 				@endforeach
 			</select>
-			<label>Chọn id loại tin</label>
-				<select name='idLT' class="form-control">
-				@foreach($idloaitin as $key=>$value)
-				<option value="{{$key}}">{{$value}}</option>
+			<label>Loại tin</label>
+				<select name='idLT' class="form-control" id="kind">
+				@foreach($idloaitin as $value)
+				<option value="{{$value->id}}">{{$value->Ten}}</option>
 				@endforeach
 			</select>
 
@@ -31,4 +31,16 @@
 		<button type="submit" class="btn btn-primary">Thêm</button>
 	</form>
 </div>
+ @endsection
+ @section('script')
+   <script type="text/javascript">
+   	 $(document).ready(function(){
+   	 		$('#categogy').change(function(){
+   	 			var categoryid = $(this).val(); // get id cate
+   	 			$.get('ajax/category/'+categoryid, function(data){
+   	 				$('#kind').html(data);
+   	 			})
+   	 		});
+   	 });
+   </script>
  @endsection

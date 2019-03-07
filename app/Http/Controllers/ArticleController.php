@@ -28,8 +28,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $idtheloai = Category::pluck('TenTL','id');
-        $idloaitin = Kind::pluck('Ten','id');
+        $idtheloai = Category::all();
+        $idloaitin = Kind::all();
         return view('admin.article.addArticle', compact('idtheloai', 'idloaitin'));
     }
 
@@ -44,7 +44,13 @@ class ArticleController extends Controller
         if($request->isMethod('POST'))
         {
             $imageObject = $request->Image;
-            $nameFile = $imageObject->getClientOriginalName(); // get ten file
+            if(!empty($imageObject))
+            {
+               $nameFile = $imageObject->getClientOriginalName(); // get ten file
+            } else {
+                $nameFile = "default.png";
+            }
+            
             $listArticle = Article::create([
             'TieuDe' => $request->input('TieuDe'),
             'NoiDung' => $request->input('NoiDung'),
