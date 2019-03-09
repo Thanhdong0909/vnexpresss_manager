@@ -15,7 +15,7 @@
 		 	<input type="file" class="form-control" name="Image" value="$article->Image">
 			<label for="">id Thể loại </label>
 			<label>Chọn id thể loại</label>
-			<select name='idTL' class="form-control">
+			<select name='idTL' class="form-control" id="categories">
 				@foreach($idtheloai as $key=>$value)
 					@if($key == $article->idTL) 
 						<option value="{{$key}}" selected="selected"> {{$value}} </option>
@@ -25,7 +25,7 @@
 				@endforeach
 			</select>
 			<label>Chọn id loại tin</label>
-				<select name='idLT' class="form-control">
+				<select name='idLT' class="form-control" id="kind">
 				@foreach($idloaitin as $key=>$value)
 					@if($key == $article->idLT)
 						<option value="{{$key}}" selected="selected">{{$value}}</option>
@@ -40,4 +40,18 @@
 		<button type="submit" class="btn btn-primary">Cập nhật</button>
 	</form>
 </div>
+ @endsection
+ @section('script')
+  <script type="text/javascript">
+  	 $(document).ready(function(){
+  	 	$('#categories').change(function(){
+  	 		var idTL = $(this).val();
+  	 		//ajax handle
+  	 		$.get('ajax/category/'+idTL, function(data){
+  	 			$('#kind').html(data);
+  	 		})
+  	 		//alert(idTL);
+  	 	})
+  	 })
+  </script>
  @endsection

@@ -15,6 +15,6 @@ class AjaxController extends Controller
     	foreach ($listKind as $key => $value) {
  				echo "<option value='".$value->id."'>".$value->Ten."</option>";
     	}
-    	dd($listKind);
+  
     }
 }
