@@ -58,3 +58,4 @@ Route::group(['prefix'=>'articles','middleware' => ['check.login']], function(){
 
 // route ajax
 Route::get('ajax/category/{categoryid}' ,'AjaxController@getAjax');
+

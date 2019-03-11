@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -15,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $listCategory = Category::all(); // get list category
-        //dd($listCategory);
+        
         return view('admin.category.listCategory', compact('listCategory'));
     }
 
@@ -35,7 +36,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         if($request->isMethod('POST')) {
             $data = $request->all();
@@ -73,7 +74,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $data =$request->all();
         $listCategory = $category->update($data);

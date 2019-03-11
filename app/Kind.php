@@ -10,6 +10,6 @@ class Kind extends Model
     protected $fillable= ['Ten','Ten_KhongDau','ThuTu','AnHien', 'idTL'];
     public function Category()
     {
-    	return $this->belongsTo('App\Category');
+    	return $this->belongsTo('App\Category', 'idTL', 'id');
     }
 }

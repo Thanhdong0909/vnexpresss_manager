@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Kind;
 use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\KindRequest;
 
 class KindController extends Controller
 {
@@ -16,6 +17,7 @@ class KindController extends Controller
     public function index()
     {
         $listKind =  Kind::all();
+        //dd($listKind);
         return view('admin.kind.listKind', compact('listKind'));
     }
 
@@ -37,7 +39,7 @@ class KindController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(KindRequest $request)
     {
         if($request->isMethod('POST')) {
             $data = $request->all();
@@ -76,7 +78,7 @@ class KindController extends Controller
      * @param  \App\Kind  $kind
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kind $kind)
+    public function update(KindRequest $request, Kind $kind)
     {
         $data = $request->all();
         $listKind = $kind->update($data);

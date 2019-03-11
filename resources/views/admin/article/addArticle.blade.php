@@ -8,10 +8,19 @@
 		<div class="form-group">
 			<label for="">Tiêu Đề</label>
 			<input type="text" class="form-control" name='TieuDe' >
+			@if($errors->has('TieuDe'))
+				<p style="color:red;">{{$errors->first('TieuDe')}}</p>
+			@endif
 			<label for="">Nội Dung</label>
 			<textarea class="form-control" rows="7" cols="30" name='NoiDung'> </textarea>
+			@if($errors->has('NoiDung'))
+				<p style="color:red;">{{$errors->first('NoiDung')}}</p>
+			@endif
 			<label for="">Hình ảnh</label>
 		 	<input type="file" class="form-control" name="Image">
+		 	@if($errors->has('Image'))
+				<p style="color:red;">{{$errors->first('Image')}}</p>
+			@endif
 			<label for=""> Thể loại </label>
 		
 			<select name='idTL' class="form-control" id="categogy">
@@ -19,6 +28,9 @@
 				<option value="{{$value->id}}">{{$value->TenTL}}</option>
 				@endforeach
 			</select>
+			@if($errors->has('idTL'))
+				<p style="color:red;">{{$errors->first('idTL')}}</p>
+			@endif
 			<label>Loại tin</label>
 				<select name='idLT' class="form-control" id="kind">
 				@foreach($idloaitin as $value)

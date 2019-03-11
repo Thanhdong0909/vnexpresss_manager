@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 use App\Kind;
-
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -39,7 +39,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         if($request->isMethod('POST'))
         {
@@ -84,8 +84,9 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit(ArticleRequest $article)
     {
+        dd("Edit");
         $idtheloai = Category::pluck('TenTL','id');
         $idloaitin = Kind::pluck('Ten','id');
         return view('admin.article.editArticle', compact('article','idtheloai','idloaitin'));
@@ -98,7 +99,7 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
         $data = array();
         if($request->hasFile('Image'))

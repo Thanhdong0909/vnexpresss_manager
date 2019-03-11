@@ -11,6 +11,6 @@ class Category extends Model
     protected $fillable= ['TenTL','TenTL_KhongDau','ThuTu','AnHien'];
     public function kinds()
     {
-    	return $this->hasMany('App\Kind');
+    	return $this->hasMany('App\Kind','idTL', 'id');
     }
 }
